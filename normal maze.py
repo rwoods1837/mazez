@@ -176,8 +176,6 @@ while not done:
     else:
         vel1[1] = 0
 
-    rand_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-
         
     # Game logic (Check for collisions, update points, etc.)
     ''' move the player in horizontal direction '''
@@ -242,7 +240,7 @@ while not done:
     if win:
         end.play()
         font = pygame.font.Font(None, 48)
-        text = font.render("You Win!", 1, rand_color)
+        text = font.render("You Win!", 1, WHITE)
         screen.blit(text, [200, 150])
 
     
