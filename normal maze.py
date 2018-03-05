@@ -127,12 +127,13 @@ wall86 =  [330, 70, 50, 10]
 wall87 =  [320, 50, 50, 10]
 wall88 =  [330, 30, 30, 10]
 wall89 =  [360, 39, 20, 1]
+wall90 =  [0, 280, 20, 20]
 
 walls = [wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15, wall16, wall17, wall18, wall19, wall20,
          wall21, wall22, wall23, wall24, wall25, wall26, wall27, wall28, wall29, wall30, wall31, wall32, wall33, wall34, wall35, wall36, wall37, wall38, wall39,
          wall40, wall41, wall42, wall43, wall44, wall45, wall46, wall47, wall48, wall49, wall50, wall51, wall52, wall53, wall54, wall55, wall56, wall57, wall58,
          wall59, wall60, wall61, wall62, wall63, wall64, wall65, wall66, wall67, wall68, wall69, wall70, wall71, wall72, wall73, wall74, wall75, wall76, wall77,
-         wall78, wall79, wall80, wall81, wall82, wall83, wall84, wall85, wall86, wall87, wall88, wall89]
+         wall78, wall79, wall80, wall81, wall82, wall83, wall84, wall85, wall86, wall87, wall88, wall89, wall90]
 
 # Make coins
 coin1 = [70, 140, 10, 10]
@@ -243,7 +244,9 @@ while not done:
         text = font.render("You Win!", 1, WHITE)
         screen.blit(text, [200, 150])
 
-    
+    font = pygame.font.Font(None, 24)
+    text = font.render(str(score1), 1, WHITE)
+    screen.blit(text, [1, 285])
     # Update screen (Actually draw the picture in the window.)
     pygame.display.flip()
 
