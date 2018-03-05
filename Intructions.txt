@@ -1,0 +1,5 @@
+MAZE GAMES AND STUFF
+- You have to open the game
+- Use the arrow keys to navigate the maze
+- Get to the big coin
+- You win
