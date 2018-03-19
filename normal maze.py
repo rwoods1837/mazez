@@ -32,6 +32,8 @@ RANDCOLOR = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 2
 coinsound = pygame.mixer.Sound("sounds/error.WAV")
 end = pygame.mixer.Sound("sounds/start.WAV")
 startgame = pygame.mixer.Sound("sounds/begin.WAV")
+pygame.mixer.music.load("sounds/theme.ogg")
+startscreen = pygame.image.load('imgs/ssc.PNG')
 screen.fill(BLUE)
 
 # Make a player
@@ -49,12 +51,19 @@ coin4 = [360, 20, 20, 19]
 
 coins = [coin1, coin2, coin3, coin4]
 
-def splash():
-    font5 = pygame.font.Font(None, 48)
-    text5 = font5.render("Press Space to Start!", 1, WHITE)
-    screen.blit(text5, [25, 150])
+def setup():
+    global player1, vel1, player1_speed, score1, coins
+    player1 =  [30, 20, 10, 10]
+    vel1 = [0, 0]
+    player1_speed = 5
+    score1 = 0
+    win = False
+    coins = [coin1, coin2, coin3, coin4]
 
-def gameplay():
+def splash():
+    screen.blit(startscreen, [0, 0])
+
+def gameplay():    
     pygame.draw.rect(screen, WHITE, player1)
         
     for w in walls:
@@ -87,7 +96,7 @@ def winx():
 # Game loop
 win = False
 done = False
-
+setup()
 while not done:
     # Event processing (React to key presses, mouse clicks, etc.)
     ''' for now, we'll just check to see if the X is clicked '''
@@ -95,13 +104,22 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                playing = True
+                startgame.play()
+                pygame.mixer.music.play(-1)
+
+            elif event.key == pygame.K_r:
+                setup()
+
     pressed = pygame.key.get_pressed()
 
     up1 = pressed[pygame.K_UP]
     down1 = pressed[pygame.K_DOWN]
     left1 = pressed[pygame.K_LEFT]
     right1 = pressed[pygame.K_RIGHT]
-    spacekey = pressed[pygame.K_SPACE]
+    skey = pressed[pygame.K_s]
 
     if left1:
         vel1[0] = -player1_speed
@@ -110,10 +128,9 @@ while not done:
     else:
         vel1[0] = 0
 
-    if spacekey:
-        playing = True
-        startgame.play()
-        
+    if skey:
+        score1 += 1
+        coinsound.play()
 
     if up1:
         vel1[1] = -player1_speed
@@ -121,6 +138,8 @@ while not done:
         vel1[1] = player1_speed
     else:
         vel1[1] = 0
+
+    
 
         
     # Game logic (Check for collisions, update points, etc.)
@@ -153,14 +172,6 @@ while not done:
 
 
     ''' get the coins '''
-    hit_list = []
-    '''
-
-    for c in coins:
-        if intersects.rect_rect(player1, c):
-            hit_list.append(c)
-    '''
-     
     hit_list = [c for c in coins if intersects.rect_rect(player1, c)]
     
     for hit in hit_list:
@@ -171,8 +182,6 @@ while not done:
     if len(coins) == 0:
         win = True
 
-        
-    # Drawing code (Describe the picture. It isn't actually drawn yet.)
     screen.fill(BLUE)
 
     if playing == False:
@@ -183,6 +192,10 @@ while not done:
 
     if win == True:
         winx()
+
+        
+    # Drawing code (Describe the picture. It isn't actually drawn yet.)
+    
 
     # Update screen (Actually draw the picture in the window.)
     pygame.display.flip()
