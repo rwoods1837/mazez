@@ -1,7 +1,3 @@
-# MAZE GAME
+# PyCollide
 
-This is the best maze game you will ever play...
-
-## How to Play
-
-Use the arrow keys to navigate through the maze, when you get to the end, X out of the game to restart
+This branch contains *starter code* for the PyCollide collision detection tutorial. Completed code for all steps in the lesson can be found on the [master branch](https://github.com/joncoop/py-collide).

@@ -12,7 +12,7 @@ pygame.init()
 WIDTH = 400
 HEIGHT = 300
 SIZE = (WIDTH, HEIGHT)
-TITLE = "Trippy Maze - Ryan Woods"
+TITLE = "The MAZE game - Ryan Woods"
 screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption(TITLE)
 playing = False
@@ -111,7 +111,10 @@ while not done:
                 pygame.mixer.music.play(-1)
 
             elif event.key == pygame.K_r:
+                playing = False
+                win = False
                 setup()
+                
 
     pressed = pygame.key.get_pressed()
 
